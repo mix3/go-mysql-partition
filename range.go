@@ -1,7 +1,6 @@
 package partition
 
 import (
-	"database/sql"
 	"fmt"
 	"regexp"
 	"strings"
@@ -24,7 +23,7 @@ func init() {
 }
 
 // NewRangePartitioner is XXX
-func NewRangePartitioner(db *sql.DB, table, expresstion string, options ...Option) Partitioner {
+func NewRangePartitioner(db DBConn, table, expresstion string, options ...Option) Partitioner {
 	p := &partitioner{
 		table:         table,
 		db:            db,

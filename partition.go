@@ -59,9 +59,15 @@ type partBuilder interface {
 	buildPart(*Partition) (string, error)
 }
 
+type DBConn interface {
+	Exec(string, ...interface{}) (sql.Result, error)
+	QueryRow(string, ...interface{}) *sql.Row
+	Prepare(string) (*sql.Stmt, error)
+}
+
 type partitioner struct {
 	table         string
-	db            *sql.DB
+	db            DBConn
 	partitionType string
 	expression    string
 	partBuilder   partBuilder

@@ -1,7 +1,6 @@
 package partition
 
 import (
-	"database/sql"
 	"fmt"
 	"strings"
 )
@@ -10,7 +9,7 @@ import (
 type List struct{}
 
 // NewListPartitioner is XXX
-func NewListPartitioner(db *sql.DB, table, expresstion string, options ...Option) Partitioner {
+func NewListPartitioner(db DBConn, table, expresstion string, options ...Option) Partitioner {
 	p := &partitioner{
 		table:         table,
 		db:            db,
